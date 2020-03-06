@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element attributes="email_client=true,hasWorkflow=true,live_feed=true,all_tables.query_hints=true" audit="true" extends="task" label="Incident" max_length="40" name="incident" sizeclass="65" text_index="true" type="collection">
-        <element label="Radar incident URI" max_length="1024" name="x_465073_radar_radar_incident_uri" read_only="true" type="url"/>
         <element label="Radar incident id" max_length="16" name="x_465073_radar_radar_incident_id" read_only="true" type="string"/>
+        <element label="Privacy impacted" max_length="40" name="x_465073_radar_privacy_impacted" type="boolean"/>
+        <element label="Radar incident URI" max_length="1024" name="x_465073_radar_radar_incident_uri" read_only="true" type="url"/>
     </element>
 </database>
