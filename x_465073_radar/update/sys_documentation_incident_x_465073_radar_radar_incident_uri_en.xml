@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="x_465073_radar_radar_incident_uri" label="Radar incident URI" language="en" table="incident">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>x_465073_radar_radar_incident_uri</element>
+            <help/>
+            <hint/>
+            <label>Radar incident URI</label>
+            <language>en</language>
+            <name>incident</name>
+            <plural>Radar incident URIs</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-03-06 21:23:45</sys_created_on>
+            <sys_id>76f67ac7db530010c19d5385ca961981</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Radar incident URI</sys_name>
+            <sys_package display_value="Radar" source="x_465073_radar">4543fe07db530010c19d5385ca961958</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Radar">4543fe07db530010c19d5385ca961958</sys_scope>
+            <sys_update_name>sys_documentation_incident_x_465073_radar_radar_incident_uri_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-03-06 21:23:45</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>
