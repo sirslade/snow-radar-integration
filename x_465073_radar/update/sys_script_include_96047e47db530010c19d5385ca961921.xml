@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_465073_radar.Radar</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Radar class that contains pertinent properties and methods for working with the Radar application.</description>
+        <name>Radar</name>
+        <script><![CDATA[var Radar = Class.create();
+Radar.prototype = {
+    initialize: function() {
+    },
+
+    type: 'Radar',
+	
+	scope: 'x_465073_radar',
+	
+	configTable: {
+		name: this.scope + '_config',
+		columns: {
+			bearerToken: 'bearer_token',
+			incidentGroupId: 'incident_group_id'
+		}
+	},
+	
+	apiMessage: {
+		name: 'Radar API',
+		methods: {
+			incidentCreate: 'Incident Create',
+			noteCreate: 'Note Create'
+		}
+	},
+	
+	getBearerToken: function() {
+		// Returns: string
+		
+		// Query the Radar Config table sorted by newest
+		var gr = this.getColumnFromConfig(this.configTable.columns.bearerToken);
+
+		if (gr.next()) {
+			// Set value for token
+			var grToken = gr.getDisplayValue(this.configTable.columns.bearerToken);
+			if (!grToken) {
+				throw({ message: 'There was a problem with your Radar Configuration' });
+			}
+			return grToken;
+		} else {
+			// Throw an error if no results are returned from the Radar Config table
+			throw({ message: 'Radar API token has not been configured' });
+		}
+	},
+	
+	getIncidentGroupId: function() {
+		// Returns: integer
+		
+		// Query the Radar Config table sorted by newest
+		var gr = this.getColumnFromConfig(this.configTable.columns.incidentGroupId);
+
+		if (gr.next()) {
+			// Set value for incident group id
+			var grIncidentGroupId = parseInt(gr.getValue(this.configTable.columns.incidentGroupId), 10);
+			if (!grIncidentGroupId) {
+				throw({ message: 'There was a problem with your Radar Configuration' });
+			}
+			return grIncidentGroupId;
+		} else {
+			// Throw an error if no results are returned from the Radar Config table
+			throw({ message: 'Radar incident group id has not been configured' });
+		}
+	},
+	
+	getColumnFromConfig: function(column) {
+		// column: string
+		// Returns: GlideRecord
+
+		// Query the Radar Config table sorted by newest
+		var gr = new GlideRecord(this.configTable.name);
+		gr.addNotNullQuery(column + '');
+		gr.orderByDesc('sys_updated_on');
+		gr.query();
+
+		return gr;
+	},
+	
+	prepareRequest: function(apiMethod, body) {
+		// apiMethod: Radar apiMethodType
+		// body: Object - depends on the shape that the apiMethod requires
+		// Returns: RESTMessageV2
+
+		// Create a new RestMessageV2
+		var request = new sn_ws.RESTMessageV2(this.apiMessage.name, apiMethod);
+
+		// Set up the request to work with the Radar API
+		request.setRequestHeader('Authorization', 'Bearer ' + this.getBearerToken());
+		request.setRequestHeader('Content-Type', 'application/json');
+		request.setRequestHeader('User-Agent', 'ServiceNow');
+		request.setRequestBody(JSON.stringify(body));
+
+		// Return the request - unexecuted so that other modifications can be made if needed
+		return request;
+	},
+	
+	createNote: function(current, previous, content) {
+		// current: Object - Incident Table Record
+		// previous: Object - Incident Table Record
+		// content: string
+		// Returns: void
+		
+		var radarIncidentId = current[this.scope + '_radar_incident_id'];
+		var prevRadarIncidentId = previous[this.scope + '_radar_incident_id'];
+		var isPrivacyIncident = current[this.scope + '_privacy_impacted'];
+		var prevPrivacyIncident = previous[this.scope + '_radar_incident_id'];
+		
+		// Return early if current has no Radar incident id
+		// Return early if there is no previous id - creating and no need for notes
+		if (!radarIncidentId || !prevRadarIncidentId) {
+			return;
+		}
+		
+		// Return early if privacy incident is unchecked
+		if (!isPrivacyIncident && !prevPrivacyIncident) {
+			return;
+		}
+		
+		var body = {
+			category: 'ServiceNow',
+			content: content.toString()
+		};
+		var request = this.prepareRequest(this.apiMessage.methods.noteCreate, body);
+		
+		// Set incident_id parameter required by the API 
+		request.setStringParameterNoEscape('incident_id', radarIncidentId);
+		
+		// Set up the response which is returned as a RestResponseV2
+		var response = request.executeAsync();
+		var httpStatus = response.getStatusCode();
+		var msg = getApiMessaging(this.apiMessage.methods.noteCreate, response);
+		
+		if (httpStatus != '201') {
+			current.work_notes = msg;
+        }
+	}
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-06 21:14:34</sys_created_on>
+        <sys_id>96047e47db530010c19d5385ca961921</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Radar</sys_name>
+        <sys_package display_value="Radar" source="x_465073_radar">4543fe07db530010c19d5385ca961958</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Radar">4543fe07db530010c19d5385ca961958</sys_scope>
+        <sys_update_name>sys_script_include_96047e47db530010c19d5385ca961921</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-06 21:14:34</sys_updated_on>
+    </sys_script_include>
+</record_update>
