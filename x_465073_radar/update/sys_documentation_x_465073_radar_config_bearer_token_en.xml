@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_documentation element="x_465073_radar_privacy_impacted" label="Privacy impacted" language="en" table="incident">
+    <sys_documentation element="bearer_token" label="Bearer token" language="en" table="x_465073_radar_config">
         <sys_documentation action="INSERT_OR_UPDATE">
-            <element>x_465073_radar_privacy_impacted</element>
+            <element>bearer_token</element>
             <help/>
             <hint/>
-            <label>Privacy impacted</label>
+            <label>Bearer token</label>
             <language>en</language>
-            <name>incident</name>
-            <plural>Privacy impacted</plural>
+            <name>x_465073_radar_config</name>
+            <plural>Bearer tokens</plural>
             <sys_class_name>sys_documentation</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2020-03-06 21:50:38</sys_created_on>
-            <sys_id>487ba387dbd30010c19d5385ca961907</sys_id>
+            <sys_created_on>2020-03-07 01:14:23</sys_created_on>
+            <sys_id>15cb2b87dbd30010c19d5385ca961971</sys_id>
             <sys_mod_count>0</sys_mod_count>
-            <sys_name>Privacy impacted</sys_name>
+            <sys_name>Bearer token</sys_name>
             <sys_package display_value="Radar" source="x_465073_radar">4543fe07db530010c19d5385ca961958</sys_package>
             <sys_policy/>
             <sys_scope display_value="Radar">4543fe07db530010c19d5385ca961958</sys_scope>
-            <sys_update_name>sys_documentation_incident_x_465073_radar_privacy_impacted_en</sys_update_name>
+            <sys_update_name>sys_documentation_x_465073_radar_config_bearer_token_en</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2020-03-06 21:50:38</sys_updated_on>
+            <sys_updated_on>2020-03-07 01:14:23</sys_updated_on>
             <url/>
             <url_target/>
         </sys_documentation>

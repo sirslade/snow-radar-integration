@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element attributes="update_synch=true" extends="sys_auth_profile" label="Config" max_length="40" name="x_465073_radar_config" type="collection"/>
+    <element attributes="update_synch=true" extends="sys_auth_profile" label="Config" max_length="40" name="x_465073_radar_config" type="collection">
+        <element label="Bearer token" mandatory="true" max_length="65536" name="bearer_token" type="glide_encrypted"/>
+        <element label="Incident group id" mandatory="true" max_length="40" name="incident_group_id" type="integer"/>
+    </element>
 </database>
