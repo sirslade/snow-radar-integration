@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>Show or hide the Radar Incident tab based on the presence of a Radar incident id.</description>
+        <field>active</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>showHideRadarTab</name>
+        <order/>
+        <script><![CDATA[function onLoad() {
+	var radar = new Radar();
+	// get the id from the form
+	var radarIncidentId = g_form.getValue(radar.scope + '_radar_incident_id');
+	// coerce a boolean
+	var hasId = radarIncidentId != null && radarIncidentId != '';
+	// set the value
+	g_form.setSectionDisplay('radar_incident', hasId);
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-09 20:48:32</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>30fa0ac0dba30010c19d5385ca961970</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>showHideRadarTab</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Radar" source="x_465073_radar">4543fe07db530010c19d5385ca961958</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Radar">4543fe07db530010c19d5385ca961958</sys_scope>
+        <sys_update_name>sys_script_client_30fa0ac0dba30010c19d5385ca961970</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-09 20:48:32</sys_updated_on>
+        <table>incident</table>
+        <type>onLoad</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>
