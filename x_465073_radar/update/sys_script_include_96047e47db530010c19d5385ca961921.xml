@@ -93,8 +93,6 @@ Radar.prototype = {
 
 		// Set up the request to work with the Radar API
 		request.setRequestHeader('Authorization', 'Bearer ' + this.getBearerToken());
-		request.setRequestHeader('Content-Type', 'application/json');
-		request.setRequestHeader('User-Agent', 'ServiceNow');
 		request.setRequestBody(JSON.stringify(body));
 
 		// Return the request - unexecuted so that other modifications can be made if needed
@@ -146,13 +144,13 @@ Radar.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-03-06 21:14:34</sys_created_on>
         <sys_id>96047e47db530010c19d5385ca961921</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Radar</sys_name>
         <sys_package display_value="Radar" source="x_465073_radar">4543fe07db530010c19d5385ca961958</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Radar">4543fe07db530010c19d5385ca961958</sys_scope>
         <sys_update_name>sys_script_include_96047e47db530010c19d5385ca961921</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-03-06 21:14:34</sys_updated_on>
+        <sys_updated_on>2020-03-09 20:43:13</sys_updated_on>
     </sys_script_include>
 </record_update>
