@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>incident</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="incident">x_465073_radar_privacy_impacted=true^x_465073_radar_radar_incident_idISEMPTY^EQ<item endquery="false" field="x_465073_radar_privacy_impacted" goto="false" newquery="false" operator="=" or="false" value="true"/>
+            <item endquery="false" field="x_465073_radar_radar_incident_id" goto="false" newquery="false" operator="ISEMPTY" or="false" value=""/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Create Radar Incident</name>
+        <order>900</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+
+	try {
+		var radar = new Radar();
+		
+		// Set up the variables required to make request to Radar API
+		var defaultRadarIncidentName = "ServiceNow privacy incident: " + current.number;
+		
+		// Define the Radar API method we'll be using
+		var apiMethod = radar.apiMessage.methods.incidentCreate;
+		
+		// Get an ISO 8601 representation of the created on date
+		var firstInformedAt = toIsoDateTime(current.sys_created_on);
+		
+		// Configure the body of the POST request
+		var body = {
+			name: current.short_description.toString() || defaultRadarIncidentName,
+			incident_group_id: radar.getIncidentGroupId(),
+			first_informed_at: firstInformedAt,
+			channel: {
+				id: current.number.toString(),
+				source: "ServiceNow",
+				uri: getServiceNowUri(current.number)
+			}
+		};
+		
+		// Set up the request
+		var request = radar.prepareRequest(apiMethod, body);
+		
+		// Set up the response which is returned as a RestResponseV2
+		var response = request.executeAsync();
+		var httpStatus = response.getStatusCode();
+		var responseBody = JSON.parse(response.getBody());
+		var msg = getApiMessaging(apiMethod, response);
+		
+		// Display a success / failure message and add to work_notes 
+		if (httpStatus == '201') {
+            gs.addInfoMessage(msg);
+			radar.createNote(current, previous, current.comments);
+			radar.createNote(current, previous, current.work_notes);
+        } else {
+            gs.addErrorMessage(msg);
+			current.work_notes += msg;
+        }
+		
+		// Assign incident id and incident uri upon request success
+		current.x_459528_radar_radar_incident_id = responseBody.id;
+		current.x_459528_radar_radar_incident_uri = getRadarUri(responseBody.id);
+
+	} catch (err) {
+		gs.addErrorMessage(err.message);
+	}
+	
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-09 20:58:39</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>b64c0a04dba30010c19d5385ca961962</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Create Radar Incident</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Radar" source="x_465073_radar">4543fe07db530010c19d5385ca961958</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Radar">4543fe07db530010c19d5385ca961958</sys_scope>
+        <sys_update_name>sys_script_b64c0a04dba30010c19d5385ca961962</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-09 20:58:39</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=b64c0a04dba30010c19d5385ca961962"/>
+</record_update>
