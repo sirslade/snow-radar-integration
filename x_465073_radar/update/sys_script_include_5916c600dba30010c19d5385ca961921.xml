@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_465073_radar.getServiceNowUri</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Build the URI to a ServiceNow incident given the id.</description>
+        <name>getServiceNowUri</name>
+        <script><![CDATA[function getServiceNowUri(id) {
+	// id: string
+	// returns: string
+	
+	if (id == null) {
+		return '';
+	}
+	return gs.getProperty('glide.servlet.uri') + '/incident.do?sysparm_query=number=' + id;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-09 20:24:50</sys_created_on>
+        <sys_id>5916c600dba30010c19d5385ca961921</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>getServiceNowUri</sys_name>
+        <sys_package display_value="Radar" source="x_465073_radar">4543fe07db530010c19d5385ca961958</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Radar">4543fe07db530010c19d5385ca961958</sys_scope>
+        <sys_update_name>sys_script_include_5916c600dba30010c19d5385ca961921</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-09 20:24:50</sys_updated_on>
+    </sys_script_include>
+</record_update>
