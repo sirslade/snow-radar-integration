@@ -76,8 +76,8 @@
         }
 		
 		// Assign incident id and incident uri upon request success
-		current.x_459528_radar_radar_incident_id = responseBody.id;
-		current.x_459528_radar_radar_incident_uri = getRadarUri(responseBody.id);
+		current[radar.scope + '_radar_incident_id'] = responseBody.id;
+		current[radar.scope + '_radar_incident_uri'] = getRadarUri(responseBody.id);
 
 	} catch (err) {
 		gs.addErrorMessage(err.message);
@@ -90,7 +90,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>b64c0a04dba30010c19d5385ca961962</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Create Radar Incident</sys_name>
         <sys_overrides/>
         <sys_package display_value="Radar" source="x_465073_radar">4543fe07db530010c19d5385ca961958</sys_package>
@@ -98,7 +98,7 @@
         <sys_scope display_value="Radar">4543fe07db530010c19d5385ca961958</sys_scope>
         <sys_update_name>sys_script_b64c0a04dba30010c19d5385ca961962</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-03-09 20:58:39</sys_updated_on>
+        <sys_updated_on>2020-03-09 23:21:01</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>
