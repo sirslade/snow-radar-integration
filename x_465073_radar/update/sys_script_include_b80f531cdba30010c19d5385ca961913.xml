@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_465073_radar.addStatusAndResponse</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Append the return status and response to a string.</description>
+        <name>addStatusAndResponse</name>
+        <script><![CDATA[function addStatusAndResponse(msg, response) {
+	// msg: string
+	// response: RESTResponseV2
+	
+	var httpStatus = response.getStatusCode();
+	var responseBody = response.getBody();
+	
+	return msg + '\nStatus: ' + httpStatus + '\nResponse: ' + responseBody;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-10 21:42:24</sys_created_on>
+        <sys_id>b80f531cdba30010c19d5385ca961913</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>addStatusAndResponse</sys_name>
+        <sys_package display_value="Radar" source="x_465073_radar">4543fe07db530010c19d5385ca961958</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Radar">4543fe07db530010c19d5385ca961958</sys_scope>
+        <sys_update_name>sys_script_include_b80f531cdba30010c19d5385ca961913</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-10 21:42:24</sys_updated_on>
+    </sys_script_include>
+</record_update>
