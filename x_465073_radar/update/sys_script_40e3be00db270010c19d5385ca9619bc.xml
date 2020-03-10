@@ -23,7 +23,7 @@
         </filter_condition>
         <is_rest>false</is_rest>
         <message/>
-        <name>Notes: Send comment or work note</name>
+        <name>Notes: Send comment and work note</name>
         <order>900</order>
         <priority>100</priority>
         <rest_method/>
@@ -36,12 +36,9 @@
 	
 	try {
 		var radar = new Radar();
-		var content = current.comments.toString() || current.work_notes.toString();
 						
-		radar.createNote(current, previous, content);
-		
-		// Push changes onto the current object
-		current.update();
+		radar.createUpdateNote(current, previous, current.comments.toString());
+		radar.createUpdateNote(current, previous, current.work_notes.toString());
 	}
 	catch(err) {
 		gs.addErrorMessage(err.message);
@@ -54,15 +51,15 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>40e3be00db270010c19d5385ca9619bc</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>Notes: Send comment or work note</sys_name>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Notes: Send comment and work note</sys_name>
         <sys_overrides/>
         <sys_package display_value="Radar" source="x_465073_radar">4543fe07db530010c19d5385ca961958</sys_package>
         <sys_policy/>
         <sys_scope display_value="Radar">4543fe07db530010c19d5385ca961958</sys_scope>
         <sys_update_name>sys_script_40e3be00db270010c19d5385ca9619bc</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-03-09 23:46:32</sys_updated_on>
+        <sys_updated_on>2020-03-10 22:58:42</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>
