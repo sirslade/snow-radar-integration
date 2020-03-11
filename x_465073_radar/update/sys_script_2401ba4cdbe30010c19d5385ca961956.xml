@@ -42,7 +42,7 @@
 			'ServiceNow update: The incident has privacy concerns.' : 
 			'ServiceNow update: The incident no longer has privacy concerns.';
 		
-		radar.createNote(current, previous, content);
+		radar.createUpdateNote(current, previous, content);
 	}
 	catch(err) {
 		gs.addErrorMessage(err.message);
@@ -55,7 +55,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>2401ba4cdbe30010c19d5385ca961956</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Notes: Privacy incident changed</sys_name>
         <sys_overrides/>
         <sys_package display_value="Radar" source="x_465073_radar">4543fe07db530010c19d5385ca961958</sys_package>
@@ -63,7 +63,7 @@
         <sys_scope display_value="Radar">4543fe07db530010c19d5385ca961958</sys_scope>
         <sys_update_name>sys_script_2401ba4cdbe30010c19d5385ca961956</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-03-09 23:35:07</sys_updated_on>
+        <sys_updated_on>2020-03-11 00:02:13</sys_updated_on>
         <template/>
         <when>after</when>
     </sys_script>
